@@ -1,0 +1,33 @@
+ifeq ($(LTYPE),g)	# turn on debug flag 
+CPPFLAGS := -DDEBUG $(CPPFLAGS)
+CXXFLAGS := $(DEBUG) $(CCWOFF)
+CFLAGS := $(DEBUG) $(CWOFF)
+FFLAGS := $(DEBUGF) $(FWOFF)
+LDFLAGS	:= $(DEBUGLD)
+else			# Maximal optimization flags
+ifeq ($(LTYPE),mopt)
+CXXFLAGS := $(MOPTXX)
+CFLAGS := $(MOPT)
+FFLAGS := $(MOPTF)
+LDFLAGS	:= $(MOPTLD)
+else			# Regular optimization flags
+ifeq ($(LTYPE),opt)
+CXXFLAGS := $(OPTXX)
+CFLAGS := $(OPT)
+FFLAGS := $(OPTF)
+LDFLAGS	:= $(OPTLD)
+endif
+endif
+endif
+
+override LIBS   := -L$(LIBDIR) -lhybrid$(LTYPE) -lvec -lgs -lmetis $(LIBS)
+override PROG   := $(PROG)
+
+OBJS    = $(foreach module, $(ALL) $(SPECIAL), $(module).o)
+SRCE    = $(foreach module, $(ALL) $(SPECIAL), $(module).C)
+
+$(PROG): $(OBJS) $(HDRS)
+	$(LD)  $(LDFLAGS) -o $(PROG).tmp $(OBJS)  $(LIBS) 
+	mv $(PROG).tmp $(PROG)
+clean :
+	rm -r *.o
