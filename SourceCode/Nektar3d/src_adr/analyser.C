@@ -10,14 +10,14 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "nektar.h"
-#include "pbc_1d.h"
 
 #include <errno.h>
 #include <sys/param.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 
+#include "nektar.h"
+#include "pbc_1d.h"
 /*
  * Run-time Analyzer ... called every time step
  */

@@ -67,7 +67,6 @@
 
 #define ERR fprintf(stderr,"Accessing virtual function\n");
 
-
 #include "hstruct.h"
 #include "nekstruct.h"
 #include "work.h"

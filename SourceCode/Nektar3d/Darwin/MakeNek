@@ -20,7 +20,7 @@ endif
 endif
 endif
 
-override LIBS   := -L$(LIBDIR) -lhybrid$(LTYPE) -lvec -lmetis -lparmetis -lgs $(LIBS) -lgfortran 
+override LIBS   := -L$(LIBDIR) -lhybrid$(LTYPE) -lvec -lgs -lmetis $(LIBS)
 override PROG   := $(PROG)
 
 OBJS    = $(foreach module, $(ALL) $(SPECIAL), $(module).o)
@@ -30,9 +30,4 @@ $(PROG): $(OBJS) $(HDRS)
 	$(LD)  $(LDFLAGS) -o $(PROG).tmp $(OBJS)  $(LIBS) 
 	mv $(PROG).tmp $(PROG)
 clean :
-	rm -r $(OBJS)
-
-
-#LINUX is reading in curved data incorrectly in optimised mode so compile debug
-io.o:
-	$(CXX) -g -w $(CPPFLAGS) -c -o io.o $(VPATH)/io.C
+	rm -r *.o

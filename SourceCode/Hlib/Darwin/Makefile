@@ -15,9 +15,11 @@ TARFILE	 = $(LIB).tar
 
 # Compilers and options
 
-defines  =  HOSURF ZERONULLDIV SVVSYMM PARALLEL #LE_VERT_OLD #PARALLEL #VELINTERP #Lanczos #DUMPLEMODES  
+defines  =  HOSURF ZERONULLDIV SVVSYMM #LE_VERT_OLD #PARALLEL #VELINTERP #Lanczos #DUMPLEMODES  
 
 CPPFLAGS :=  -I$(INCDIR)
+
+include ../../Flags/$(ARCH).inc
 
 ifeq ($(ARCH),SunOS)			# SunOS 5.*
 include ../../Flags/SunOS.inc

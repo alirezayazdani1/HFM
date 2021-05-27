@@ -1,21 +1,21 @@
-COMPATH	= /usr/bin
-CXX	= $(COMPATH)/g++
-CC	= $(COMPATH)/gcc 
+COMPATH	= /usr/local/bin
+CXX	= $(COMPATH)/g++-11
+CC	= $(COMPATH)/gcc-11 
 ifeq ($(MACHTYPE),i386)
 FC	= /sw/bin/g95
 FFLAGS = -DNO_DLAMCH
 CPPFLAGS := $(CPPFLAGS) -D__APPLE_INTEL__
 else
-FC 	= /sw/bin/g77
+FC 	= $(COMPATH)/gfortran-11
 endif
 
-MPILIB	= -L/usr/local/bin/
+MPILIB	= -L/usr/local/lib/
 MPIINC	= -I/usr/local/include/
 
 ifdef MPIPRG
 # CFM default rule
 message	+= CFM default uses MPICH, ch_p4, sun4u. 
-CXX	= /usr/local/bin/mpiCC
+CXX	= /usr/local/bin/mpic++
 CC	= /usr/local/bin/mpicc
 FC	= /usr/local/bin/mpif77
 endif
@@ -28,16 +28,13 @@ OPTF	= -O3 $(MCPU) -ffast-math
 MOPTF	= -O3 $(MCPU) -ffast-math -funroll-loops  
 DEBUG	= -g  -gstabs+
 DEBUGF	= -g $(FPPFLAGS)
-LD	= $(CXX) -bind_at_load
+LD	= $(CXX) -mmacosx-version-min=11.0 #-bind_at_load
 DEBUGLD	= $(DEBUG)
 MOPTLD	= $(MOPTXX)
 OPTLD	= $(OPTXX)
 ifdef FFTPRG
 FFTLIB	= -lfftw
 endif
-LPG   	= -L/usr/local/lib -lpgftnrtl -lpgc   
-ifeq ($(MACHTYPE),i386)
-LIBS	= -lvec $(FFTLIB) -framework Accelerate -L/sw/lib -lg95
-else
-LIBS	= -lvec $(FFTLIB) -framework Accelerate -L/sw/lib -lg2c 
-endif
+LLAPACK = -L/usr/local/opt/lapack/lib -llapack
+LBLAS   = -L/usr/local/opt/openblas/lib -lblas
+LIBS    = $(FFTLIB) $(LLAPACK) $(LBLAS)

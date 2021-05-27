@@ -11,7 +11,7 @@
  * $State: Exp $   
  *---------------------------------------------------------------------------*/
 
-#include <hotel.h>
+#include "hotel.h"
 #include "stokes_solve.h"
 
 #ifdef PBC_1D
@@ -33,8 +33,7 @@ extern "C"
 
 /* general include files */
 #include <math.h>
-#include <veclib.h>
-
+#include "veclib.h"
 
 /* parameters */
 #define HP_MAX  128   /* Maximum number of history points */

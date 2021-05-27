@@ -9,11 +9,11 @@
  *---------------------------------------------------------------------------*/
 
 #include <stdio.h>
-#include <hotel.h>
 #include <math.h>
 #include <veclib.h>
 #include <felisa.h>
 #include <string.h>
+#include "hotel.h"
 
 #define SCALTOL 1.5
 #define TOLV 1E-2

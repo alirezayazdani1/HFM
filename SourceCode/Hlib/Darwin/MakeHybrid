@@ -47,3 +47,6 @@ $(LIB): $(LMOD)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $<
 .F.o:
 	$(FC) $(FFLAGS)  -c $<
+.y.o:
+	yacc $<
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c y.tab.c -o manager.o

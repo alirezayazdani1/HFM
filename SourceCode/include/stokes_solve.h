@@ -1,7 +1,7 @@
 #ifndef H_STOKES_SLV
 #define H_STOKES_SLV
 
-#include <hotel.h>
+#include "hotel.h"
 #include "GMatrix.h"
 #include "SClevel.h"
 //#include "nektar.h"
