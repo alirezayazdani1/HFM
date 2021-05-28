@@ -1,12 +1,12 @@
 COMPATH	= /usr/local/bin
-CXX	= $(COMPATH)/g++-11
-CC	= $(COMPATH)/gcc-11 
+CXX	= $(COMPATH)/g++-7
+CC	= $(COMPATH)/gcc-7 
 ifeq ($(MACHTYPE),i386)
 FC	= /sw/bin/g95
 FFLAGS = -DNO_DLAMCH
 CPPFLAGS := $(CPPFLAGS) -D__APPLE_INTEL__
 else
-FC 	= $(COMPATH)/gfortran-11
+FC 	= $(COMPATH)/gfortran-7
 endif
 
 MPILIB	= -L/usr/local/lib/
@@ -28,13 +28,13 @@ OPTF	= -O3 $(MCPU) -ffast-math
 MOPTF	= -O3 $(MCPU) -ffast-math -funroll-loops  
 DEBUG	= -g  -gstabs+
 DEBUGF	= -g $(FPPFLAGS)
-LD	= $(CXX) -mmacosx-version-min=11.0 #-bind_at_load
+LD	= $(CXX) -bind_at_load
 DEBUGLD	= $(DEBUG)
 MOPTLD	= $(MOPTXX)
 OPTLD	= $(OPTXX)
 ifdef FFTPRG
 FFTLIB	= -lfftw
 endif
-LLAPACK = -L/usr/local/opt/lapack/lib -llapack
-LBLAS   = -L/usr/local/opt/openblas/lib -lblas
-LIBS    = $(FFTLIB) $(LLAPACK) $(LBLAS)
+LLAPACK = #-L/usr/local/opt/lapack/lib -llapack
+LBLAS   = #-L/usr/local/opt/openblas/lib -lblas
+LIBS    = $(FFTLIB) $(LLAPACK) $(LBLAS) -framework Accelerate

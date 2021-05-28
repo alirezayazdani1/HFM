@@ -14,4 +14,4 @@ clean:
 	cd Veclib && rm -f *.a
 	cd metis-4.0.3 && make clean && rm -f *.a
 	cd Hlib/Linux && rm *.a *.tab.c
-	cd Nektar3d/Linux && make clean
+	cd Nektar3d/Linux && make clean && rm Nektar*
