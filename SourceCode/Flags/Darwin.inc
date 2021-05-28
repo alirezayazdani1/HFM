@@ -1,23 +1,23 @@
-COMPATH	= /usr/local/bin
-CXX	= $(COMPATH)/g++-7
-CC	= $(COMPATH)/gcc-7 
+COMPATH	= /opt/openmpi/
+CXX	= g++-7
+CC	= gcc-7 
 ifeq ($(MACHTYPE),i386)
 FC	= /sw/bin/g95
 FFLAGS = -DNO_DLAMCH
 CPPFLAGS := $(CPPFLAGS) -D__APPLE_INTEL__
 else
-FC 	= $(COMPATH)/gfortran-7
+FC 	= gfortran-7
 endif
 
-MPILIB	= -L/usr/local/lib/
-MPIINC	= -I/usr/local/include/
+MPILIB	= -L$(COMPATH)/lib
+MPIINC	= -I$(COMPATH)/include
 
 ifdef MPIPRG
 # CFM default rule
 message	+= CFM default uses MPICH, ch_p4, sun4u. 
-CXX	= /usr/local/bin/mpic++
-CC	= /usr/local/bin/mpicc
-FC	= /usr/local/bin/mpif77
+CXX	= $(COMPATH)/bin/mpic++
+CC	= $(COMPATH)/bin/mpicc
+FC	= $(COMPATH)/bin/mpifort
 endif
 message	+= You can specify MCPU=-mcpu=pentiumpro,ev5 etc or MCPU=-march=pentium. See the gcc info pages for more information. 
 OPTXX	= -O3 $(MCPU) -ffast-math 

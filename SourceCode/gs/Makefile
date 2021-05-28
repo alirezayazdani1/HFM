@@ -18,7 +18,7 @@ ifeq ($(ARCH),Linux)
 	ARCH =  Linux-ia64
   endif
 endif
-HYBRID	= ../
+HYBRID	= ..
 VPATH	= src
 LIB	= libgs.a
 INCDIR	= 

@@ -1,6 +1,12 @@
+ARCH  := $(shell uname)
+HYBRID  = ../..
+
+# Compilers and options
+
+include $(HYBRID)/Flags/$(ARCH).inc
 
 # Which compiler to use
-CC = gcc
+#CC = gcc
 
 # What optimization level to use
 OPTFLAGS = -O3
