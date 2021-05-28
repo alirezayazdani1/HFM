@@ -12,6 +12,9 @@ VPATH	 = ../src
 LIB	 = libhybrid
 INCDIR	 = ../../include
 TARFILE	 = $(LIB).tar
+ifeq ($(PARALLEL),1)
+MPIPRG = yes
+endif
 
 # Compilers and options
 

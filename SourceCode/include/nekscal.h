@@ -7,7 +7,9 @@
  * $Author: ssherw $  
  * $State: Exp $   
  *---------------------------------------------------------------------------*/
-#include <hotel.h>
+#include "hotel.h"
+#undef max
+#undef min
 /* general include files */
 #include <math.h>
 #include <veclib.h>

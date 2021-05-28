@@ -1,6 +1,6 @@
 
 # Which compiler to use
-CC = /usr/local/bin/gcc-11
+CC = gcc
 
 # What optimization level to use
 OPTFLAGS = -O3

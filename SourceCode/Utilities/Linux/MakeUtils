@@ -39,10 +39,9 @@ ifeq ($(ARCH),OSF1)                     # DEC Alpha AXP
 include ../../Flags/DECAXP.inc
 endif
 
-ifeq ($(ARCH),Linux)			# HP-UX
-include ../../Flags/Linux.inc
+ifeq ($(ARCH),HP-UX)			# HP-UX
+include ../../Flags/HP-UX.inc
 endif
-
 
 ifeq ($(LTYPE),g)	# turn on debug flag 
 CPPFLAGS := -DDEBUG $(DEBUG) $(CPPFLAGS)
@@ -68,14 +67,14 @@ endif
 
 ifdef PARALLEL
 override CPPFLAGS :=  -DPARALLEL -DMETIS $(CPPFLAGS) $(MPIINC)
-overrider ALL	  := $(ALL)
+override ALL	  := $(ALL)
 
 ifeq ($(ARCH),ap3000)
 override LIBS     := $(LIBS) -L/opt/FSUNaprun/lib -lmpl -lemi -lthread 
 endif
 
 ifeq ($(ARCH),Linux)			# Linux using GCC
-override LIBS     := $(LIBS) -lmetis -lgs $(MPILIB) -lmpich 
+override LIBS     := 
 endif
 
 ifeq ($(ARCH),unicosmk)			# T3E
@@ -90,7 +89,7 @@ endif
 
 endif
 
-override LIBS   := -L$(LIBDIR) -lhybrid$(LTYPE) -lvec $(LIBS) -lgfortran #-lefence
+override LIBS   := -L$(LIBDIR) -lhybrid$(LTYPE) -lvec -lgs -lmetis $(LIBS)
 
 
 $(PROG) :$(PROG).o gen_utils.o io.o prepost.o mlevel.o bwoptim.o comm.o
@@ -113,4 +112,4 @@ isofilter :isofilter.o isoutils.o gen_utils.o io.o prepost.o mlevel.o bwoptim.o 
 
 #LINUX is reading in curved data incorrectly in optimised mode so compile debug
 io.o:io.C
-	$(CXX) -g -w $(CPPFLAGS) -c -o io.o $<
+	$(CXX) -g $(CPPFLAGS) -c -o io.o $<

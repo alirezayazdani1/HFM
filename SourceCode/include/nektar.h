@@ -12,6 +12,8 @@
  *---------------------------------------------------------------------------*/
 
 #include "hotel.h"
+#undef max
+#undef min
 #include "stokes_solve.h"
 
 #ifdef PBC_1D

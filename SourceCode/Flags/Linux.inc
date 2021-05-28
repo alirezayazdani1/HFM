@@ -1,17 +1,16 @@
-COMPATH	= 
 CXX	= g++
 CC	= gcc 
 FC	= gfortran
 
-MPILIB	= -L/usr/local/packages/mpich2-gcc/lib
-MPIINC	= -I/usr/local/packages/mpich2-gcc/include/
+COMPATH	= /usr/lib64/openmpi
+MPILIB	= -L$(COMPATH)/lib
+MPIINC	= -I$(COMPATH)/include
 
 ifdef MPIPRG
-# CFM default rule
-message	+= CFM default uses MPICH, ch_p4, sun4u. 
-CXX	= mpicxx
-CC	= mpicc
-FC	= gfortran
+message	+= CFM default uses OpenMPI
+CXX	= $(COMPATH)/bin/mpic++
+CC	= $(COMPATH)/bin/mpicc
+FC	= $(COMPATH)/bin/mpifort
 endif
 message	+= You can specify MCPU=-mcpu=pentiumpro,ev5 etc or MCPU=-march=pentium. See the gcc info pages for more information. 
 OPTXX	= -O3 $(MCPU) -ffast-math  -w
@@ -29,7 +28,6 @@ OPTLD	= $(OPTXX)
 ifdef FFTPRG
 FFTLIB	= -lfftw
 endif
-LLAPACK = -L/usr/local/packages/lapack-3.3.1 -llapack 
-LBLAS   = -L/usr/local/packages/BLAS -lblas
-LPG   	= #-L/usr/lib -lpgftnrtl -lpgc   
-LIBS	= $(FFTLIB) $(LLAPACK) $(LBLAS) 
+LLAPACK = -L/usr/lib64 -llapack
+LBLAS   = -L/usr/lib64 -lblas
+LIBS	  = $(FFTLIB) $(LLAPACK) $(LBLAS)

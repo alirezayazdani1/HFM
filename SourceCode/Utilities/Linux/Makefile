@@ -19,8 +19,8 @@ help:
 %dbx:
 	$(MAKE) -f MakeUtils LTYPE=g PROG=$(subst dbx,,$@)
 
-%opt:
-	$(MAKE) -f MakeUtils LTYPE=opt PROG=$(subst opt,,$@)
+%mopt:
+	$(MAKE) -f MakeUtils LTYPE=mopt PROG=$(subst mopt,,$@)
 
 clean:
 	rm -f *.o

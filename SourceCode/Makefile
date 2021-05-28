@@ -1,17 +1,17 @@
 default:
-	cd gs && make ARCH=Darwin mopt
-	cd Veclib && make ARCH=Darwin OPTM=1
-	cd metis-4.0.3/Lib && make
-	cd Hlib/Darwin && make ARCH=Darwin PARALLEL=1 mopt && \
+	cd gs && make ARCH=Linux mopt
+	cd Veclib && make ARCH=Linux OPTM=1
+	cd metis-4.0.3 && make
+	cd Hlib/Linux && make ARCH=Linux PARALLEL=1 mopt && \
 	cp ../../gs/libgs.a . && \
 	cp ../../Veclib/libvec.a . && \
 	cp ../../metis-4.0.3/libmetis.a .
-	cd Nektar3d/Darwin && make ARCH=Darwin ADR=1 PARALLEL=1 mopt
-	cp Nektar3d/Darwin/Nektar* .
+	cd Nektar3d/Linux && make ARCH=Linux ADR=1 PARALLEL=1 mopt
+	cp Nektar3d/Linux/Nektar* .
 	
 clean:
 	cd gs && rm -f *.a
 	cd Veclib && rm -f *.a
 	cd metis-4.0.3 && make clean && rm -f *.a
-	cd Hlib/Darwin && rm libgs.a libvec.a libmetis.a libhybridmopt.a *.tab.c
-	cd Nektar3d/Darwin && make clean
+	cd Hlib/Linux && rm *.a *.tab.c
+	cd Nektar3d/Linux && make clean
