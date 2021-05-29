@@ -7,7 +7,7 @@ We present hidden fluid mechanics (HFM), a physics informed deep learning framew
 ## Nektar-3D
 3D spectral/hp element solver for unsteady incompressible Navier-Stokes equations coupled with advection-diffusion-reaction equations.
 
-Please refer to [Installation Guide](https://github.com/alirezayazdani1/HFM/tree/master/SourceCode) for compilation and building Utility tools (the code has been successfully compiled with Intel Compilers 2018 and GCC 7.5).
+Please refer to [Installation Guide](https://github.com/alirezayazdani1/HFM/blob/master/SourceCode/InstallationGuide.md) for compilation and building Utility tools (the code has been successfully compiled with Intel Compilers 2018 and GCC 7.5).
 
 ## Nektar++
 Nektar++ is a tensor product based finite element package designed to allow one to construct efficient classical low polynomial order h-type solvers (where h is the size of the finite element) as well as higher p-order piecewise polynomial order solvers.
